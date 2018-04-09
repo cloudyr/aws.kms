@@ -3,21 +3,24 @@ sudo: false
 cache: packages
 matrix:
   include:
-    - os: linux
-      dist: trusty
-      sudo: required
-      env: R_CODECOV=true
-    - os: osx
-      osx_image: xcode9.2
-    - os: osx
-      osx_image: xcode7.3
-      r_build_args: '--no-build-vignettes'
-      r_check_args: '--ignore-vignettes --no-examples'
+  - os: linux
+    dist: trusty
+    sudo: required
+    env: R_CODECOV=true
+  - os: osx
+    osx_image: xcode9.2
+  - os: osx
+    osx_image: xcode7.3
+    r_build_args: "--no-build-vignettes"
+    r_check_args: "--ignore-vignettes --no-examples"
 r_packages:
 - knitr
 - covr
 - drat
 after_success:
 - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
-#- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash knitreadme.sh
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash drat.sh
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash
+  drat.sh
+env:
+  global:
+    secure: pgw63C3d9j3i90Nd4QWMRyG81xUThzEyOsvEm/aLcHOufrJeHWGyaLwvp9aTaIslARRVpzBtOC2DU1tCT42OyPcPmj7R3AXWLBv3mjZOk5tlqeGaGXJAlF7fhEbMIeJvjjG6SzmAsMoMyMz6ndK+O++fbdPHq/Nc/1TUkM8IpW114U8JFfUIdHH7bcsWt+vY0N3xrj8H9prX+jD4KuhjKr18ucTognaSFqcYIjSVUpwvivRGM0f+ak1iQ7bitB9FOufhpc2vM4Y+fs2cnLWEluU2VGqYHhohDT+cGXm/LvOwH6CXRSUZo8RNnK5NROKL2okSE2gbgDf+uMH/L5D2Qf0pvDuEqIdFMOrSYd5CKjOdCPKPBNmcxIAej4QySFUTFtmswb8RAXnfRyVF0dPgUPGoYDV/On3f/2MZ09pp+ty0N6RimAq71D+UYFLiQvhJdRz8AWfAR0j6Ltvmb5lTHaYZAioHu6zjNzOvXBfTXgWycV+TsaKziBRVUP5tjCbEPK0dl6lJSKEYF5O8MlC1lDnHe0YNBCX39HhEdARF0TWhZpRvSvvRqGb2zOWksbY4oq3deus0rWT+yc4SoOZsmyjOFHDEYDlbjG3CdhCCIkvwA3H8uMPxGCUqF9m5z1VkZFtDAEdnSJ3Y7+Eb9g4PIKNlmyzFFgZCq6jyRzhuYmI=
