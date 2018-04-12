@@ -6,7 +6,7 @@ matrix:
   - os: linux
     dist: trusty
     sudo: required
-    env: R_CODECOV=true
+    env: DRAT_DEPLOY=true
   - os: osx
     osx_image: xcode9.2
   - os: osx
@@ -14,13 +14,15 @@ matrix:
     r_build_args: "--no-build-vignettes"
     r_check_args: "--ignore-vignettes --no-examples"
 r_packages:
-- knitr
 - covr
 - drat
+r_github_packages:
+- cloudyr/travisci
 after_success:
-- if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash
-  drat.sh
+- R -q -e 'library("covr");codecov()'
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && test
+  $DRAT_DEPLOY == "true" && bash drat.sh
+- R -q -e "travisci::restart_last_build('cloudyr/awspack')"
 env:
   global:
-    secure: pgw63C3d9j3i90Nd4QWMRyG81xUThzEyOsvEm/aLcHOufrJeHWGyaLwvp9aTaIslARRVpzBtOC2DU1tCT42OyPcPmj7R3AXWLBv3mjZOk5tlqeGaGXJAlF7fhEbMIeJvjjG6SzmAsMoMyMz6ndK+O++fbdPHq/Nc/1TUkM8IpW114U8JFfUIdHH7bcsWt+vY0N3xrj8H9prX+jD4KuhjKr18ucTognaSFqcYIjSVUpwvivRGM0f+ak1iQ7bitB9FOufhpc2vM4Y+fs2cnLWEluU2VGqYHhohDT+cGXm/LvOwH6CXRSUZo8RNnK5NROKL2okSE2gbgDf+uMH/L5D2Qf0pvDuEqIdFMOrSYd5CKjOdCPKPBNmcxIAej4QySFUTFtmswb8RAXnfRyVF0dPgUPGoYDV/On3f/2MZ09pp+ty0N6RimAq71D+UYFLiQvhJdRz8AWfAR0j6Ltvmb5lTHaYZAioHu6zjNzOvXBfTXgWycV+TsaKziBRVUP5tjCbEPK0dl6lJSKEYF5O8MlC1lDnHe0YNBCX39HhEdARF0TWhZpRvSvvRqGb2zOWksbY4oq3deus0rWT+yc4SoOZsmyjOFHDEYDlbjG3CdhCCIkvwA3H8uMPxGCUqF9m5z1VkZFtDAEdnSJ3Y7+Eb9g4PIKNlmyzFFgZCq6jyRzhuYmI=
+    secure: 0WyGsANIk73/e2c7/3yQy7W7uN7tPOrgVWf+aapV7As0fx+9fmyeISUsiHy1v1n/qWE8UIM6EQqjkDWK/3Z1FiZJ0u/bccBnEnj6PWRfNhkNIuDH1oNhfRQm5HktXp7GgTDCvofFSoLpqzm1qYpOZBPglzJ1Uup4nDHnx1tsaJMbJvLZYBnNSiesVb0qx0PgydNXT1P64pqPPFxXTQCHgeO/7idF5O2rn0MHaniM/W0aXQ3tJGDWYQ/lAFRGJireaiGfeUHtphEgNJdxvb3NomJSSTL9jwUBvYdMqPLVtfwDk4XrgXCygczIjsxpdtc/+JMS6VDKdd5gD67V9sdXHWELC6+Hs+NQDL+oM0xUphyT9sn3VaEYnHg8pScH3j0Bt3HvoUJsAMPcy/rqNDmc3VQpUVX5C8YIF4wHNzMyFNezGw7F3gXOjiYpV6DJALH7QwrLn/3ngoI/bSpBWePkUz55x97ZiQI2G2b4ZVYrVDWpz9k4HWIvvT4uKEK6QZBDfv/C1p7nNx75dIU3bTuxm2adIxK6vZjMCCGZ5pID79lxpPaXd21o1bFPvF47t3UaYO6MRLU/pU87wIVIh7LcE9qmWOtA47lyvwLtRU/w3hSydNJSXLjdw0OjHc9I6EMB1Mox+wqdM8RNSfyPaP2Pjg1AQusI+nGBmt/zeYt1HEo=
