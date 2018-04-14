@@ -6,7 +6,7 @@
 \alias{aws.kms}
 \title{aws.kms}
 \description{
-A Cloudyr Project Package
+AWS Key Management Service (KMS) Client.
 }
 \details{
 This is a client for the AWS Key Management Service (KMS).
