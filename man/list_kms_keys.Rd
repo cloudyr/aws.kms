@@ -13,8 +13,16 @@ list_kms_keys(n = 100, marker = NULL, ...)
 
 \item{\dots}{Additional arguments passed to \code{\link{kmsHTTP}}.}
 }
+\value{
+A data frame
+}
 \description{
 List encryption keys in KMS
+}
+\examples{
+\dontrun{
+  list_kms_keys()
+}
 }
 \seealso{
 \code{\link{get_kms_key}}, \code{\link{create_kms_key}}, \code{\link{delete_kms_key}}

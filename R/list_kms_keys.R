@@ -3,6 +3,11 @@
 #' @param n An integer specifying a number of keys to return (for pagination).
 #' @param marker A pagination marker.
 #' @param \dots Additional arguments passed to \code{\link{kmsHTTP}}.
+#' @return A data frame
+#' @examples
+#' \dontrun{
+#'   list_kms_keys()
+#' }
 #' @seealso \code{\link{get_kms_key}}, \code{\link{create_kms_key}}, \code{\link{delete_kms_key}}
 #' @export
 list_kms_keys <-

@@ -2,24 +2,54 @@
 % Please edit documentation in R/create_kms_key.R
 \name{create_kms_key}
 \alias{create_kms_key}
+\alias{update_kms_key}
 \alias{get_kms_key}
 \alias{delete_kms_key}
+\alias{undelete_kms_key}
 \title{Create/Update/Retrieve/Delete Encryption Key}
 \usage{
-create_kms_key(...)
+create_kms_key(description = NULL, origin = c("AWS_KMS", "EXTERNAL"),
+  usage = "ENCRYPT_DECRYPT", ...)
 
-get_kms_key(...)
+update_kms_key(key, description, ...)
 
-delete_kms_key(key, ...)
+get_kms_key(key, ...)
+
+delete_kms_key(key, delay = 7, ...)
+
+undelete_kms_key(key, ...)
 }
 \arguments{
+\item{description}{Optionally, a character string describing the key. This can be updated later using \code{update_kms_key}. An alias for the key, which can be used in lieu of the KeyId in subsequent calls can be set with \code{\link{create_kms_alias}}.}
+
+\item{origin}{A character string specifying the origin. Default is \dQuote{AWS_KMS}. If \dQuote{EXTERNAL}, use \code{\link{put_kms_material}} to add a key created using other infrastructure. See \url{https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html} for details.}
+
+\item{usage}{Ignored.}
+
 \item{\dots}{Additional arguments passed to \code{\link{kmsHTTP}}.}
 
 \item{key}{A character string specifying a key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \dQuote{alias/}.}
+
+\item{delay}{An integer specifying a number of delays to wait before deleting key. Minimum 7 and maximum 30.}
+}
+\value{
+\code{create_kms_key} and \code{get_kms_key} return a list of class \dQuote{aws_kms_key}. \code{delete_kms_key} and \code{undelete_kms_key} return a logical.
 }
 \description{
 Create/update/retrieve/delete a KMS encryption key
 }
+\examples{
+\dontrun{
+  # create key
+  k <- create_kms_key(description = "example")
+  
+  # get key
+  get_kms_key(k)
+  
+  # delete in 30 days
+  delete_kms_key(k, delay = 30)
+}
+}
 \seealso{
-\code{\link{list_kms_keys}}, \code{\link{create_kms_alias}}
+\code{\link{list_kms_keys}}, \code{\link{create_kms_alias}}, \code{\link{disable_kms_key}}, \code{\link{encrypt}}
 }

@@ -15,7 +15,7 @@ function(
   alias,
   ...
 ) {
-    bod <- list(AliasName = alias, TargetKeyId = key)
+    bod <- list(AliasName = alias, TargetKeyId = get_kms_keyid(key))
     out <- kmsHTTP(action = "CreateAlias", body = bod, ...)
     return(out)
 }
@@ -40,7 +40,7 @@ function(
   alias,
   ...
 ) {
-    bod <- list(AliasName = alias, TargetKeyId = key)
+    bod <- list(AliasName = alias, TargetKeyId = get_kms_keyid(key))
     out <- kmsHTTP(action = "UpdateAlias", body = bod, ...)
     return(out)
 }

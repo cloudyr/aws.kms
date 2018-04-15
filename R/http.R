@@ -15,7 +15,7 @@
 #' @author Thomas J. Leeper
 #' @import httr
 #' @importFrom jsonlite fromJSON toJSON
-#' @importFrom aws.signature signature_v4_auth
+#' @import aws.signature
 #' @export
 kmsHTTP <- 
 function(
