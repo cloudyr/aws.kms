@@ -34,8 +34,30 @@ Temporary session tokens are stored in environment variable `AWS_SESSION_TOKEN` 
 
 ## Code Examples
 
+The core function in **aws.kms** is `create_kms_key()` which generates a KMS encryption key.
+
 ```R
 library("aws.kms")
+
+# create key
+k <- create_kms_key(description = "example")
+# get key
+get_kms_key(k)
+```
+
+With a key, it is possible to do arbitrary encryption:
+
+```R
+# encrypt
+tmp <- tempfile()
+cat("example test", file = tmp)
+(etext <- encrypt(tmp, k))
+
+# decrypt
+(dtext <- decrypt(etext, k, encode = FALSE))
+if (require("base64enc")) {
+    rawToChar(base64enc::base64decode(dtext))
+}
 ```
 
 
