@@ -16,6 +16,5 @@ Imports:
     jsonlite,
     base64enc,
     aws.signature (>= 0.4.0)
-Suggests:
-    testthat
+Encoding: UTF-8
 RoxygenNote: 6.0.1
