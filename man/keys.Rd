@@ -8,8 +8,12 @@
 \alias{undelete_kms_key}
 \title{Create/Update/Retrieve/Delete Encryption Key}
 \usage{
-create_kms_key(description = NULL, origin = c("AWS_KMS", "EXTERNAL"),
-  usage = "ENCRYPT_DECRYPT", ...)
+create_kms_key(
+  description = NULL,
+  origin = c("AWS_KMS", "EXTERNAL"),
+  usage = "ENCRYPT_DECRYPT",
+  ...
+)
 
 update_kms_key(key, description, ...)
 

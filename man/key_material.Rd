@@ -10,8 +10,12 @@ put_kms_material(key, material, token, expires = TRUE, valid_to = NULL, ...)
 
 delete_kms_material(key, ...)
 
-get_material_parameters(key, algorithm = c("RSAES_PKCS1_V1_5",
-  "RSAES_OAEP_SHA_1", "RSAES_OAEP_SHA_256"), spec = "RSA_2048", ...)
+get_material_parameters(
+  key,
+  algorithm = c("RSAES_PKCS1_V1_5", "RSAES_OAEP_SHA_1", "RSAES_OAEP_SHA_256"),
+  spec = "RSA_2048",
+  ...
+)
 }
 \arguments{
 \item{key}{A character string specifying a key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \dQuote{alias/}.}
@@ -37,7 +41,7 @@ Manage key material for \dQuote{external} keys.
 \code{put_kms_material} adds key material to an \dQuote{external} KMS key, which can be created using \code{create_kms_key}. The import requires \code{delete_kms_material} deletes the imported material (but not the key itself).
 }
 \references{
-\url{docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html}
+\url{https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html}
 }
 \seealso{
 \code{\link{create_kms_key}}

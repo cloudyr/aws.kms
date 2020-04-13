@@ -17,4 +17,4 @@ Imports:
     base64enc,
     aws.signature (>= 0.4.0)
 Encoding: UTF-8
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0

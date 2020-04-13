@@ -4,8 +4,7 @@
 \alias{generate_data_key}
 \title{Generate data keys}
 \usage{
-generate_data_key(key, spec = c("AES_256", "AES_128"), plaintext = TRUE,
-  ...)
+generate_data_key(key, spec = c("AES_256", "AES_128"), plaintext = TRUE, ...)
 }
 \arguments{
 \item{key}{A character string specifying a key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \dQuote{alias/}.}
