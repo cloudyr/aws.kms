@@ -7,12 +7,13 @@ matrix:
     dist: trusty
     sudo: required
     env: DRAT_DEPLOY=true
-  - os: osx
-    osx_image: xcode9.2
-  - os: osx
-    osx_image: xcode7.3
-    r_build_args: "--no-build-vignettes"
-    r_check_args: "--ignore-vignettes --no-examples"
+# Remove macos because R support is currently broken on macos Travis
+#  - os: osx
+#    osx_image: xcode9.2
+#  - os: osx
+#    osx_image: xcode7.3
+#    r_build_args: "--no-build-vignettes"
+#    r_check_args: "--ignore-vignettes --no-examples"
 r_packages:
 - covr
 - drat
