@@ -49,26 +49,23 @@ if (require("base64enc")) {
 
 [![CRAN](https://www.r-pkg.org/badges/version/aws.kms)](https://cran.r-project.org/package=aws.kms)
 ![Downloads](https://cranlogs.r-pkg.org/badges/aws.kms)
+[![RForge](https://rforge.net/do/versvg/aws.kms)](https://RForge.net/aws.kms)
 [![Travis Build Status](https://travis-ci.org/cloudyr/aws.kms.png?branch=master)](https://travis-ci.org/cloudyr/aws.kms)
-[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/PROJECTNUMBER?svg=true)](https://ci.appveyor.com/project/cloudyr/aws.kms)
 [![codecov.io](https://codecov.io/github/cloudyr/aws.kms/coverage.svg?branch=master)](https://codecov.io/github/cloudyr/aws.kms?branch=master)
 
-This package is not yet on CRAN. To install the latest development version you can install from the cloudyr drat repository:
+Latest stable release from CRAN:
 
 ```R
-# latest stable version
-install.packages("aws.kms", repos = c(cloudyr = "http://cloudyr.github.io/drat", getOption("repos")))
+install.packages("aws.kms", repos = "https://cloud.R-project.org")
 ```
 
-Or, to pull a potentially unstable version directly from GitHub:
+Lastest development version from RForge.net:
 
 ```R
-if (!require("remotes")) {
-    install.packages("remotes")
-}
-remotes::install_github("cloudyr/aws.kms")
+install.packages("aws.kms", repos = c("https://RForge.net", "https://cloud.R-project.org"))
 ```
 
+On Windows you may need to add `INSTALL_opts = "--no-multiarch"`
 
 ---
 [![cloudyr project logo](https://i.imgur.com/JHS98Y7.png)](https://github.com/cloudyr)
